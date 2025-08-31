@@ -1,11 +1,25 @@
 import { neon } from '@neondatabase/serverless';
 
+// Load dotenv if we're in Node.js environment
+if (typeof process !== 'undefined' && process.env) {
+  try {
+    require('dotenv').config();
+  } catch {
+    // dotenv not available, that's ok
+  }
+}
+
 // Get database URL from environment variables
 const getDatabaseUrl = (): string => {
-  const url = (import.meta as any).env?.VITE_DATABASE_URL;
+  // Try both Node.js and Vite environment variables
+  const url = process.env.DATABASE_URL || (import.meta as any).env?.VITE_DATABASE_URL;
   
   if (!url) {
-    throw new Error('DATABASE_URL environment variable is not set');
+    console.log('Environment variables:', { 
+      DATABASE_URL: process.env.DATABASE_URL, 
+      VITE_DATABASE_URL: (import.meta as any).env?.VITE_DATABASE_URL 
+    });
+    throw new Error('DATABASE_URL environment variable is not set. Make sure to set DATABASE_URL or VITE_DATABASE_URL in your .env file');
   }
   
   return url;

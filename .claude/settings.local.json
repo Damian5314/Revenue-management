@@ -3,7 +3,9 @@
     "allow": [
       "Bash(git rm:*)",
       "Bash(git config:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(npm run migrate:*)",
+      "Bash(npm run dev:*)"
     ],
     "deny": [],
     "ask": []

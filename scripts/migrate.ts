@@ -1,5 +1,9 @@
 #!/usr/bin/env tsx
 
+import dotenv from 'dotenv';
+// Load environment variables
+dotenv.config();
+
 import { runMigrations } from '../src/lib/migrations';
 
 async function migrate() {

@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+// import { useDatabase } from "./src/hooks/useDatabase";
 
 /**********************
  * Table Tech – Multi‑business Revenue Tracker (React, no external UI libs)
@@ -402,6 +403,7 @@ const MiniBarChartLabeled: React.FC<{ data: { month: string; amount: number }[] 
 // App Component
 // ------------------------------
 export default function App() {
+  // const db = useDatabase();
   const [state, setState] = useState(() => loadState() || seed);
   const [mode, setMode] = useState<"cash" | "mrr">("cash");
   const [year, setYear] = useState(new Date().getFullYear());
