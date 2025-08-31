@@ -2,7 +2,7 @@ import { neon } from '@neondatabase/serverless';
 
 // Get database URL from environment variables
 const getDatabaseUrl = (): string => {
-  const url = import.meta.env.VITE_DATABASE_URL;
+  const url = (import.meta as any).env?.VITE_DATABASE_URL;
   
   if (!url) {
     throw new Error('DATABASE_URL environment variable is not set');
@@ -26,5 +26,5 @@ export const testConnection = async (): Promise<boolean> => {
 };
 
 // Export types for TypeScript support
-export type DatabaseResult = Awaited<ReturnType<typeof sql>>;
-export type DatabaseRow = DatabaseResult[number];
+export type DatabaseResult = any[];
+export type DatabaseRow = Record<string, any>;
